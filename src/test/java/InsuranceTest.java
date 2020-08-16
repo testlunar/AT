@@ -69,8 +69,8 @@ WebElement element;
         driver.switchTo().window(newWindowHandle);
         System.out.println("New window title: " + driver.getTitle());
 
-        //String signOnline2= "//div[@class='row']//*[contains(text(),'Оформить')]";
-        String signOnline2= "/html/body/app/ng-component/div/div/div/app-setup-product/div/form/div/div[1]/div/button";
+        String signOnline2= "//div[@class='row']//*[contains(text(),'Оформить')]";
+        //String signOnline2= "/html/body/app/ng-component/div/div/div/app-setup-product/div/form/div/div[1]/div/button";
         ((JavascriptExecutor) driver).executeScript("return arguments[0].scrollIntoView(true);", driver.findElement(By.xpath(signOnline2)));
         driver.findElement(By.xpath(signOnline2)).click();
 
@@ -98,6 +98,11 @@ WebElement element;
         driver.findElement(By.id("documentDate")).sendKeys("15.09.2000");
 
         driver.findElement(By.xpath("//*[contains(text(),'Продолжить')]")).click();
+
+
+        assertEquals("При заполнении данных произошла ошибка",
+                driver.findElement(By.xpath("//div[@class='alert-form alert-form-error']")).getText());
+
         System.out.println("Тест завершен!");
 
     }
